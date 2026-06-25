@@ -1,0 +1,7 @@
+metricId,period,actual,target,previousPeriodActual
+cash-flow,Q2 2026,1600000,1350000,1470000
+bfr,Q2 2026,760000,820000,780000
+turnover,Q2 2026,6.8,8,7.4
+arr,Q2 2026,19200000,17800000,18400000
+oee,Q2 2026,88,86,84.2
+uptime-sla,Q2 2026,99.95,99.9,99.93
