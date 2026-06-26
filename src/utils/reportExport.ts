@@ -1,6 +1,5 @@
-import { domains } from '../data/mockData';
 import { EmployeeAttendanceRecord, MetricWithRecord } from '../types/types';
-import { computeHealthScore, formatMetricValue, getHealthLabel } from './kpi';
+import { computeHealthScore, getHealthLabel } from './kpi';
 
 interface ReportData {
   period: string;
@@ -54,10 +53,6 @@ function safeFileName(value: string) {
     .replace(/[^a-zA-Z0-9_-]+/g, '-')
     .replace(/^-|-$/g, '')
     .toLowerCase();
-}
-
-function getDomainName(domainId: string) {
-  return domains.find((domain) => domain.id === domainId)?.name ?? domainId;
 }
 
 function getEmployeeRows(data: ReportData) {
@@ -115,17 +110,6 @@ function table(headers: string[], rows: Array<Array<string | number>>, footer?: 
       }
     </table>
   `;
-}
-
-function metricRows(metrics: MetricWithRecord[]) {
-  return metrics.map(({ definition, record }) => [
-    getDomainName(definition.domainId),
-    definition.code,
-    definition.name,
-    formatMetricValue(record.actual, definition),
-    formatMetricValue(record.target, definition),
-    formatMetricValue(record.previousPeriodActual, definition),
-  ]);
 }
 
 function barChart(title: string, rows: Array<{ label: string; value: number; color?: string; display?: string }>) {
@@ -244,7 +228,6 @@ function buildReportHtml(data: ReportData, mode: 'excel' | 'powerpoint') {
     [[data.period, formatHours(model.totals.presenceHours), formatDays(model.totals.sickLeaveHours), formatDays(model.totals.permissionHours), formatDays(totalAbsentHours)]],
   );
 
-  const kpiTable = table(['Domaine', 'Code', 'KPI', 'Reel', 'Objectif', 'Periode precedente'], metricRows(data.metrics));
   const sickLeaveTable = table(
     ['Agent', 'Fonction', 'Jours arret maladie', 'Heures'],
     model.sickLeaveRows.map((employee) => [employee.name, employee.role, formatDays(employee.sickLeaveHours), formatHours(employee.sickLeaveHours)]),
@@ -284,7 +267,6 @@ function buildReportHtml(data: ReportData, mode: 'excel' | 'powerpoint') {
           <section class="slide">
             <h2>Tableaux de synthese</h2>
             ${summaryTable}
-            ${kpiTable}
           </section>
           <section class="slide">
             <h2>Arrets maladie et absences</h2>
@@ -315,8 +297,6 @@ function buildReportHtml(data: ReportData, mode: 'excel' | 'powerpoint') {
           ${charts}
           <h2>Synthese</h2>
           ${summaryTable}
-          <h2>KPI</h2>
-          ${kpiTable}
           <h2>Agents en arret maladie</h2>
           ${sickLeaveTable}
           <h2>Agents absents</h2>
