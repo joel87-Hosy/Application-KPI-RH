@@ -19,11 +19,11 @@ export function ExecutiveView({ items }: ExecutiveViewProps) {
 
   return (
     <div className="space-y-6">
-      <section className="grid gap-4 lg:grid-cols-[1fr_2fr]">
-        <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-5">
+      <section className="grid gap-4 xl:grid-cols-[1fr_2fr]">
+        <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-4 sm:p-5">
           <p className="text-sm font-medium text-zinc-400">Santé globale</p>
           <div className="mt-4 flex items-end gap-3">
-            <span className="text-5xl font-semibold text-white">{score}</span>
+            <span className="text-4xl font-semibold text-white sm:text-5xl">{score}</span>
             <span className="pb-2 text-sm text-zinc-500">/ 115</span>
           </div>
           <p className="mt-3 text-lg font-medium text-zinc-100">{getHealthLabel(score)}</p>
@@ -32,14 +32,14 @@ export function ExecutiveView({ items }: ExecutiveViewProps) {
           </p>
         </div>
 
-        <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-5">
+        <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-4 sm:p-5">
           <div className="mb-5 flex items-center justify-between gap-3">
             <div>
               <h2 className="text-base font-semibold text-white">Revenu vs Objectif</h2>
               <p className="text-sm text-zinc-500">12 derniers mois</p>
             </div>
           </div>
-          <div className="h-72">
+          <div className="h-64 sm:h-72">
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart data={revenueHistory}>
                 <CartesianGrid stroke="#27272a" vertical={false} />
@@ -59,11 +59,11 @@ export function ExecutiveView({ items }: ExecutiveViewProps) {
       </section>
 
       <section>
-        <div className="mb-3 flex items-center justify-between">
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
           <h2 className="text-base font-semibold text-white">Pinned KPIs</h2>
           <span className="text-xs text-zinc-500">6 domaines stratégiques</span>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-3">
           {pinnedItems.map((item) => (
             <ProKpiCard key={item.definition.id} definition={item.definition} record={item.record} />
           ))}

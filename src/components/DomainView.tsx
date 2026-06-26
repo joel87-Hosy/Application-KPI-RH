@@ -120,7 +120,7 @@ function EmployeeAttendanceSection({ rows, period }: { rows: EmployeeAttendanceR
               <p className="text-xs text-zinc-500">Totaux de la periode selectionnee</p>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[620px] text-left text-sm">
+              <table className="w-full min-w-[560px] text-left text-sm">
                 <thead className="text-xs uppercase text-zinc-500">
                   <tr>
                     <th className="px-4 py-3 font-medium">Periode</th>
@@ -141,13 +141,13 @@ function EmployeeAttendanceSection({ rows, period }: { rows: EmployeeAttendanceR
             </div>
           </div>
 
-          <div className="grid gap-4 xl:grid-cols-3">
-            <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-4">
+          <div className="grid gap-4 lg:grid-cols-2 2xl:grid-cols-3">
+            <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-3 sm:p-4">
               <div className="mb-3">
                 <h3 className="text-sm font-semibold text-white">Repartition globale</h3>
                 <p className="text-xs text-zinc-500">Presence, absences, arrets et permissions</p>
               </div>
-              <div className="h-72">
+              <div className="h-64 sm:h-72">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie data={distributionData} dataKey="value" nameKey="name" innerRadius={58} outerRadius={90} paddingAngle={2}>
@@ -162,16 +162,16 @@ function EmployeeAttendanceSection({ rows, period }: { rows: EmployeeAttendanceR
               </div>
             </div>
 
-            <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-4">
+            <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-3 sm:p-4">
               <div className="mb-3">
                 <h3 className="text-sm font-semibold text-white">Totaux de la periode</h3>
                 <p className="text-xs text-zinc-500">Comparaison en heures</p>
               </div>
-              <div className="h-72">
+              <div className="h-64 sm:h-72">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={monthlyBarData}>
                     <CartesianGrid stroke="#27272a" vertical={false} />
-                    <XAxis dataKey="label" tick={{ fill: '#a1a1aa', fontSize: 11 }} axisLine={false} tickLine={false} />
+                    <XAxis dataKey="label" tick={{ fill: '#a1a1aa', fontSize: 10 }} axisLine={false} tickLine={false} interval={0} />
                     <YAxis tick={{ fill: '#a1a1aa', fontSize: 12 }} axisLine={false} tickLine={false} />
                     <Tooltip formatter={(value: number) => formatHours(value)} contentStyle={{ background: '#09090b', border: '1px solid #3f3f46', borderRadius: 8, color: '#fff' }} />
                     <Bar dataKey="heures" name="Heures" fill="#38bdf8" radius={[4, 4, 0, 0]} />
@@ -180,12 +180,12 @@ function EmployeeAttendanceSection({ rows, period }: { rows: EmployeeAttendanceR
               </div>
             </div>
 
-            <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-4">
+            <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-3 sm:p-4 lg:col-span-2 2xl:col-span-1">
               <div className="mb-3">
                 <h3 className="text-sm font-semibold text-white">Top absences</h3>
                 <p className="text-xs text-zinc-500">Absence + arret maladie, en jours</p>
               </div>
-              <div className="h-72">
+              <div className="h-72 sm:h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={topAbsenceChartData} layout="vertical" margin={{ left: 18 }}>
                     <CartesianGrid stroke="#27272a" horizontal={false} />
@@ -200,12 +200,12 @@ function EmployeeAttendanceSection({ rows, period }: { rows: EmployeeAttendanceR
           </div>
 
           {sickLeaveChartData.length > 0 && (
-            <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-4">
+            <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-3 sm:p-4">
               <div className="mb-3">
                 <h3 className="text-sm font-semibold text-white">Arrets maladie par agent</h3>
                 <p className="text-xs text-zinc-500">Classement des agents concernes, en jours</p>
               </div>
-              <div className="h-80">
+              <div className="h-72 sm:h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={sickLeaveChartData} layout="vertical" margin={{ left: 24 }}>
                     <CartesianGrid stroke="#27272a" horizontal={false} />
@@ -226,7 +226,7 @@ function EmployeeAttendanceSection({ rows, period }: { rows: EmployeeAttendanceR
                 <p className="text-xs text-zinc-500">Nombre de jours par agent</p>
               </div>
               <div className="max-h-[420px] overflow-auto">
-                <table className="w-full min-w-[560px] text-left text-sm">
+                <table className="w-full min-w-[520px] text-left text-sm">
                   <thead className="sticky top-0 bg-zinc-950 text-xs uppercase text-zinc-500">
                     <tr>
                       <th className="px-4 py-3 font-medium">Agent</th>
@@ -261,7 +261,7 @@ function EmployeeAttendanceSection({ rows, period }: { rows: EmployeeAttendanceR
                 <p className="text-xs text-zinc-500">Absences hors arret maladie</p>
               </div>
               <div className="max-h-[420px] overflow-auto">
-                <table className="w-full min-w-[560px] text-left text-sm">
+                <table className="w-full min-w-[520px] text-left text-sm">
                   <thead className="sticky top-0 bg-zinc-950 text-xs uppercase text-zinc-500">
                     <tr>
                       <th className="px-4 py-3 font-medium">Agent</th>
@@ -307,7 +307,7 @@ function EmployeeAttendanceSection({ rows, period }: { rows: EmployeeAttendanceR
               <p className="text-xs text-zinc-500">Absence + arret maladie</p>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[520px] text-left text-sm">
+              <table className="w-full min-w-[500px] text-left text-sm">
                 <thead className="text-xs uppercase text-zinc-500">
                   <tr>
                     <th className="px-4 py-3 font-medium">#</th>
@@ -339,7 +339,7 @@ function EmployeeAttendanceSection({ rows, period }: { rows: EmployeeAttendanceR
               <p className="text-xs text-zinc-500">Tous les employes de la periode selectionnee</p>
             </div>
             <div className="max-h-[520px] overflow-auto">
-              <table className="w-full min-w-[680px] text-left text-sm">
+              <table className="w-full min-w-[620px] text-left text-sm">
                 <thead className="sticky top-0 bg-zinc-950 text-xs uppercase text-zinc-500">
                   <tr>
                     <th className="px-4 py-3 font-medium">Employe</th>
@@ -385,11 +385,11 @@ export function DomainView({ domain, items, period, employeeAttendance }: Domain
     <div className="space-y-6">
       <section className="border-b border-zinc-800 pb-5">
         <p className="text-sm font-semibold uppercase tracking-normal text-sky-300">Vue Domaine</p>
-        <h1 className="mt-2 text-3xl font-semibold text-white">{domain.name}</h1>
+        <h1 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">{domain.name}</h1>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-zinc-400">{domain.description}</p>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <section className="grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-3">
         {items.map((item) => (
           <ProKpiCard
             key={item.definition.id}
@@ -404,7 +404,7 @@ export function DomainView({ domain, items, period, employeeAttendance }: Domain
       {domain.id === 'rh' && <EmployeeAttendanceSection rows={employeeRows} period={period} />}
 
       {selectedItem && (
-        <section className="rounded-lg border border-zinc-800 bg-zinc-950 p-5">
+        <section className="rounded-lg border border-zinc-800 bg-zinc-950 p-3 sm:p-5">
           <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
             <div>
               <h2 className="text-base font-semibold text-white">{selectedItem.definition.name}</h2>
@@ -412,7 +412,7 @@ export function DomainView({ domain, items, period, employeeAttendance }: Domain
             </div>
             <span className="rounded-md border border-zinc-700 px-2 py-1 text-xs text-zinc-300">{selectedItem.definition.code}</span>
           </div>
-          <div className="h-80">
+          <div className="h-72 sm:h-80">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={history}>
                 <defs>

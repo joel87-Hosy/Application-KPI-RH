@@ -32,11 +32,11 @@ export function ProKpiCard({ definition, record, isSelected = false, onClick }: 
     <button
       type="button"
       onClick={onClick}
-      className={`group w-full rounded-lg border p-4 text-left transition focus:outline-none focus:ring-2 focus:ring-sky-400/70 ${
+      className={`group w-full rounded-lg border p-3 text-left transition focus:outline-none focus:ring-2 focus:ring-sky-400/70 sm:p-4 ${
         statusStyles[status]
       } ${isSelected ? 'ring-2 ring-sky-400/80' : 'hover:border-zinc-400/50'}`}
     >
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="truncate text-sm font-medium text-zinc-100">{definition.name}</p>
           <p className="mt-1 text-xs font-semibold uppercase tracking-normal text-zinc-500">{definition.code}</p>
@@ -46,9 +46,9 @@ export function ProKpiCard({ definition, record, isSelected = false, onClick }: 
         </span>
       </div>
 
-      <div className="mt-5 flex items-end justify-between gap-3">
-        <div>
-          <p className="text-2xl font-semibold text-white">{formatMetricValue(record.actual, definition)}</p>
+      <div className="mt-5 flex flex-wrap items-end justify-between gap-3">
+        <div className="min-w-0">
+          <p className="break-words text-xl font-semibold text-white sm:text-2xl">{formatMetricValue(record.actual, definition)}</p>
           <p className="mt-1 text-xs text-zinc-400">Target {formatMetricValue(record.target, definition)}</p>
         </div>
         <div
