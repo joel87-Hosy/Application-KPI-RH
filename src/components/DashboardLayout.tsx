@@ -23,6 +23,7 @@ import { computeHealthScore, getHealthLabel } from '../utils/kpi';
 import { DomainView } from './DomainView';
 import { ExecutiveView } from './ExecutiveView';
 import { MetricImportButton } from './MetricImportButton';
+import { ReportExportButtons } from './ReportExportButtons';
 
 const iconMap: Record<string, LucideIcon> = {
   Landmark,
@@ -159,6 +160,7 @@ export function DashboardLayout() {
               <span className="hidden max-w-64 truncate text-xs text-zinc-400 lg:inline">{importMessage}</span>
             )}
             <MetricImportButton records={records} onImport={handleImport} />
+            <ReportExportButtons period={period} metrics={metricItems} employeeAttendance={employeeAttendance} />
             <select
               value={period}
               onChange={(event) => setPeriod(event.target.value as Period)}
