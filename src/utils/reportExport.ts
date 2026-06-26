@@ -163,7 +163,7 @@ function addPptTitle(slide: pptxgen.Slide, title: string, subtitle?: string) {
 }
 
 function addPptMetricCard(slide: pptxgen.Slide, label: string, value: string, detail: string, x: number, color: string) {
-  slide.addShape(pptxgen.ShapeType.roundRect, {
+  slide.addShape('roundRect', {
     x,
     y: 1.12,
     w: 2.95,
@@ -186,7 +186,7 @@ function addPptBarBlock(
   w: number,
   h: number,
 ) {
-  slide.addShape(pptxgen.ShapeType.roundRect, {
+  slide.addShape('roundRect', {
     x,
     y,
     w,
@@ -203,8 +203,8 @@ function addPptBarBlock(
     const rowY = y + 0.48 + index * 0.29;
     const barWidth = Math.max((row.value / maxValue) * (w - 2.45), row.value > 0 ? 0.08 : 0);
     slide.addText(row.label, { x: x + 0.14, y: rowY, w: 1.15, h: 0.15, fontFace: 'Arial', fontSize: 7, color: pptColors.muted, margin: 0, fit: 'shrink' });
-    slide.addShape(pptxgen.ShapeType.rect, { x: x + 1.36, y: rowY + 0.02, w: w - 2.45, h: 0.1, fill: { color: '27272A' }, line: { color: '27272A' } });
-    slide.addShape(pptxgen.ShapeType.rect, { x: x + 1.36, y: rowY + 0.02, w: barWidth, h: 0.1, fill: { color: row.color }, line: { color: row.color } });
+    slide.addShape('rect', { x: x + 1.36, y: rowY + 0.02, w: w - 2.45, h: 0.1, fill: { color: '27272A' }, line: { color: '27272A' } });
+    slide.addShape('rect', { x: x + 1.36, y: rowY + 0.02, w: barWidth, h: 0.1, fill: { color: row.color }, line: { color: row.color } });
     slide.addText(row.display, { x: x + w - 0.86, y: rowY, w: 0.7, h: 0.15, fontFace: 'Arial', fontSize: 7, color: pptColors.text, align: 'right', margin: 0, fit: 'shrink' });
   });
 }
